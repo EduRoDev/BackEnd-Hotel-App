@@ -15,3 +15,11 @@ type Room struct {
 	Description string `json:"description"`
 	Price       int    `json:"price"`
 }
+
+type Customers struct {
+	Id       int    `json:"id"`
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Phone    string `json:"phone"`
+	Password string `json:"password"`
+}
