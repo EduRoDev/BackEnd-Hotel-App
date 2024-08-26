@@ -5,22 +5,22 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/DxKaizer/Hotel_Backend/pkg/database"
-	"github.com/DxKaizer/Hotel_Backend/pkg/model"
+	implements "github.com/DxKaizer/Hotel_Backend/pkg/services/Implements"
+	"github.com/DxKaizer/Hotel_Backend/pkg/services/interfaces"
 )
 
 type Hotel struct {
-	l *log.Logger
+	l  *log.Logger
+	hs interfaces.HotelInterface
 }
 
 func NewLogger(l *log.Logger) *Hotel {
-	return &Hotel{l}
+	return &Hotel{l, &implements.HotelService{}}
 }
 
 func (h *Hotel) GetHotel(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json")
-	data := model.Hotels{}
-	database.Database.Find(&data)
+	hotels := h.hs.GetAllHotels()
 	w.WriteHeader(http.StatusAccepted)
-	json.NewEncoder(w).Encode(data)
+	json.NewEncoder(w).Encode(hotels)
 }
