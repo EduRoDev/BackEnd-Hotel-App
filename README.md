@@ -11,3 +11,4 @@ Este repositorio contiene el código fuente para la versión 2 del backend de un
 * **Autenticación y autorización:** El backend implementa mecanismos de autenticación y autorización para proteger los recursos del hotel.
 * **Manejo de errores:** El backend maneja los errores de manera adecuada y proporciona mensajes de error informativos a las aplicaciones front-end.
 * **Documentación:** El backend está bien documentado con comentarios en el código y una documentación API.
+
