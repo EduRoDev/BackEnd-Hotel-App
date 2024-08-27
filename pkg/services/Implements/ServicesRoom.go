@@ -39,18 +39,30 @@ func (rs *RoomService) CreateRooms(room entities.Room) map[string]interface{} {
 	}
 }
 
-func (rs *RoomService) EditRooms(room entities.Room) entities.Room {
+func (rs *RoomService) EditRooms(room entities.Room) map[string]interface{} {
 	result := database.Database.Model(&room).Updates(room)
 	if result.Error != nil {
-		return entities.Room{}
+		return map[string]interface{}{
+			"Status":  "Error",
+			"Message": "Error al editar la habitación",
+		}
 	}
-	return room
+	return map[string]interface{}{
+		"Status":  "Success",
+		"Message": "Habitación editada exitosamente",
+	}
 }
 
-func (rs *RoomService) DeleteRooms(room entities.Room) entities.Room {
+func (rs *RoomService) DeleteRooms(room entities.Room) map[string]interface{} {
 	result := database.Database.Delete(&room)
 	if result.Error != nil {
-		return entities.Room{}
+		return map[string]interface{}{
+			"Status":  "Error",
+			"Message": "Error al eliminar la habitación",
+		}
 	}
-	return room
+	return map[string]interface{}{
+		"Status":  "Success",
+		"Message": "Habitación eliminada exitosamente",
+	}
 }
